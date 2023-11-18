@@ -44,6 +44,13 @@ return [
     'purchase' => [
         'title' => 'Purchases',
         'fields' => [
+            'supplier' => 'Supplier Name',
+            'product' => 'Product Name',
+            'date' => 'Date',
+            'invoice_no' => 'Invoice No',
+            'qty' => 'Qty',
+            'currency' => 'Currency',
+            'price' => 'Price'
         ],
     ],
 ];

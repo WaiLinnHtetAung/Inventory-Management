@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Models\Purchase;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PurchaseController extends Controller
 {
@@ -21,7 +23,11 @@ class PurchaseController extends Controller
      */
     public function create()
     {
-        //
+        $suppliers = Supplier::pluck('name', 'id');
+        $products = Product::pluck('name', 'id');
+        $invoice_no = "# ".sprintf("%07d", Purchase::latest()->first() ? Purchase::latest()->first()->id + 1 : 1);
+
+        return view('admin.purchases.create', compact('suppliers', 'products', 'invoice_no'));
     }
 
     /**
