@@ -52,6 +52,9 @@
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 
+    {{-- date picker  --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
 </head>
 
 <body>
@@ -146,6 +149,9 @@
     {{-- select 2  --}}
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+    {{-- date picker  --}}
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 
     @yield('scripts')
 
@@ -214,6 +220,17 @@
                     title: "{{ session('fail') }}"
                 })
             @endif
+
+            //date picker
+            $(function() {
+                let date = document.querySelector('.date');
+                if (date) {
+                    date.flatpickr({
+                        dateFormat: "Y-m-d"
+                    })
+                }
+            })
+
         })
     </script>
 </body>

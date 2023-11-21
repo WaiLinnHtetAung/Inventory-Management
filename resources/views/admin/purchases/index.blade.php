@@ -19,12 +19,13 @@
         <div class="card-body">
             <table class="table table-bordered table-striped w-100" id="DataTable">
                 <thead>
-                    <th class="no-sort"></th>
-                    <th>{{ __('messages.purchase.fields.name') }}</th>
-                    <th>{{ __('messages.purchase.fields.email') }}</th>
-                    <th>{{ __('messages.purchase.fields.phone') }}</th>
-                    <th>{{ __('messages.purchase.fields.address') }}</th>
-                    <th class="no-sort text-nowrap">Action</th>
+                    <tr>
+                        <th class="no-sort"></th>
+                        <th>{{ __('messages.purchase.fields.invoice_no') }}</th>
+                        <th>{{ __('messages.purchase.fields.supplier') }}</th>
+                        <th>{{ __('messages.purchase.fields.date') }}</th>
+                        <th class="no-sort text-nowrap">Action</th>
+                    </tr>
                 </thead>
                 <tbody>
 
@@ -48,20 +49,16 @@
                         name: 'plus-icon'
                     },
                     {
-                        data: 'name',
-                        name: 'name'
+                        data: 'invoice_no',
+                        name: 'invoice_no'
                     },
                     {
-                        data: 'email',
-                        name: 'email'
+                        data: 'supplier_id',
+                        name: 'supplier_id'
                     },
                     {
-                        data: 'phone',
-                        name: 'phone'
-                    },
-                    {
-                        data: 'address',
-                        name: 'address'
+                        data: 'date',
+                        name: 'date'
                     },
                     {
                         data: 'action',

@@ -136,6 +136,21 @@ class PermissionsSeeder extends Seeder
             [
                 'title' => 'purchase_access',
             ],
+            [
+                'title' => 'sale_create',
+            ],
+            [
+                'title' => 'sale_edit',
+            ],
+            [
+                'title' => 'sale_show',
+            ],
+            [
+                'title' => 'sale_delete',
+            ],
+            [
+                'title' => 'sale_access',
+            ],
         ];
 
         Permission::insert($permissions);

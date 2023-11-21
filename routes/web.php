@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\DailyPurchaseReportController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PurchaseController;
@@ -57,6 +58,14 @@ Route::group(['middleware' => ['auth', 'prevent-back-history'], 'prefix' => 'adm
     //purchase
     Route::get('/purchase-datatable', [PurchaseController::class, 'dataTable']);
     Route::resource('purchases', PurchaseController::class);
+
+    //Daily Purchase Report
+    Route::get('/daily-purchase-report', [DailyPurchaseReportController::class, 'index'])->name('daily-purchase-report.index');
+    Route::post('/get-purchase-report', [DailyPurchaseReportController::class, 'getReport'])->name('purchase.report');
+
+    //sale
+    Route::get('/sale-datatable', [SaleController::class, 'dataTable']);
+    Route::resource('sales', SaleController::class);
 
 });
 

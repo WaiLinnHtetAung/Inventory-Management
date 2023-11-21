@@ -45,12 +45,15 @@ return [
         'title' => 'Purchases',
         'fields' => [
             'supplier' => 'Supplier Name',
+            'supplier_email' => 'Supplier Email',
             'product' => 'Product Name',
             'date' => 'Date',
             'invoice_no' => 'Invoice No',
             'qty' => 'Qty',
             'currency' => 'Currency',
-            'price' => 'Price'
+            'price' => 'Price',
+            'total' => 'Total',
+            'grand-total' => 'Grand Total',
         ],
     ],
 ];

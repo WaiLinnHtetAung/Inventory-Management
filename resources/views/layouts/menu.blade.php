@@ -59,35 +59,36 @@
             </li>
         @endcan
 
-        <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Products Management</span>
-        </li>
-
-        {{-- category  --}}
-        @can('category_access')
-            <li
-                class="menu-item {{ request()->is('admin/categories') || request()->is('admin/categories/*') ? 'active' : '' }}">
-                <a href="{{ route('admin.categories.index') }}" class="menu-link">
-                    <i class='menu-icon tf-icons bx bx-menu-alt-right'></i>
-                    <div data-i18n="Analytics">{{ __('messages.category.title') }}</div>
-                </a>
-            </li>
-        @endcan
-
         @can('product_access')
             <li
-                class="menu-item {{ request()->is('admin/products') || request()->is('admin/products/*') ? 'active' : '' }}">
-                <a href="{{ route('admin.products.index') }}" class="menu-link">
+                class="menu-item {{ request()->is('admin/categories') || request()->is('admin/categories/*') || request()->is('admin/products') || request()->is('admin/products/*') ? 'active open' : '' }}">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class='menu-icon tf-icons bx bx-server'></i>
-                    <div data-i18n="Analytics">{{ __('messages.product.title') }}</div>
+                    <div data-i18n="Layouts">Products Management</div>
                 </a>
+
+                <ul class="menu-sub">
+                    @can('category_access')
+                        <li
+                            class="menu-item {{ request()->is('admin/categories') || request()->is('admin/categories/*') ? 'active' : '' }}">
+                            <a href="{{ route('admin.categories.index') }}" class="menu-link">
+                                {{-- <i class='menu-icon tf-icons bx bx-menu-alt-right'></i> --}}
+                                <div data-i18n="Analytics">{{ __('messages.category.title') }}</div>
+                            </a>
+                        </li>
+                    @endcan
+
+                    @can('product_access')
+                        <li
+                            class="menu-item {{ request()->is('admin/products') || request()->is('admin/products/*') ? 'active' : '' }}">
+                            <a href="{{ route('admin.products.index') }}" class="menu-link">
+                                <div data-i18n="Analytics">{{ __('messages.product.title') }}</div>
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
             </li>
         @endcan
-
-        <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Contact Management</span>
-        </li>
-
 
         @can('customer_access')
             <li
@@ -109,16 +110,51 @@
             </li>
         @endcan
 
-        <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Purchase Management</span>
-        </li>
 
         @can('purchase_access')
+            <li
+                class="menu-item {{ request()->is('admin/purchases') || request()->is('admin/purchases/*') || request()->is('admin/daily-purchase-report') ? 'active open' : '' }}">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class='menu-icon tf-icons bx bxs-cart-alt'></i>
+                    <div data-i18n="Layouts">Purchase Mgmt</div>
+                </a>
+
+                <ul class="menu-sub">
+                    <li
+                        class="menu-item {{ request()->is('admin/purchases') || request()->is('admin/purchases/*') ? 'active' : '' }}">
+                        <a href="{{ route('admin.purchases.index') }}" class="menu-link">
+                            {{-- <i class='menu-icon tf-icons bx bxs-cart-alt'></i> --}}
+                            <div data-i18n="Analytics">{{ __('messages.purchase.title') }}</div>
+                        </a>
+                    </li>
+
+                    <li class="menu-item {{ request()->is('admin/daily-purchase-report') ? 'active' : '' }}">
+                        <a href="{{ route('admin.daily-purchase-report.index') }}" class="menu-link">
+                            {{-- <i class='menu-icon tf-icons bx bxs-report'></i> --}}
+                            <div data-i18n="Analytics">Daily Purchase Report</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        @endcan
+
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Sale Management</span>
+        </li>
+
+        @can('sale_access')
             <li
                 class="menu-item {{ request()->is('admin/purchases') || request()->is('admin/purchases/*') ? 'active' : '' }}">
                 <a href="{{ route('admin.purchases.index') }}" class="menu-link">
                     <i class='menu-icon tf-icons bx bxs-cart-alt'></i>
                     <div data-i18n="Analytics">{{ __('messages.purchase.title') }}</div>
+                </a>
+            </li>
+
+            <li class="menu-item {{ request()->is('admin/daily-purchase-report') ? 'active' : '' }}">
+                <a href="{{ route('admin.daily-purchase-report.index') }}" class="menu-link">
+                    <i class='menu-icon tf-icons bx bxs-report'></i>
+                    <div data-i18n="Analytics">Daily Purchase Report</div>
                 </a>
             </li>
         @endcan

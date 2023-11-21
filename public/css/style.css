@@ -68,6 +68,12 @@
     margin-right: 0.4rem !important;
 }
 
+/* date picker input */
+
+.date {
+    background: transparent !important;
+}
+
 /* icon of page */
 
 .card-head-icon {
