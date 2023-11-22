@@ -70,7 +70,7 @@
                 <ul class="menu-sub">
                     @can('category_access')
                         <li
-                            class="menu-item {{ request()->is('admin/categories') || request()->is('admin/categories/*') ? 'active' : '' }}">
+                            class="menu-item {{ request()->is('admin/categories') || request()->is('admin/categories/*') ? 'active open' : '' }}">
                             <a href="{{ route('admin.categories.index') }}" class="menu-link">
                                 {{-- <i class='menu-icon tf-icons bx bx-menu-alt-right'></i> --}}
                                 <div data-i18n="Analytics">{{ __('messages.category.title') }}</div>
@@ -80,7 +80,7 @@
 
                     @can('product_access')
                         <li
-                            class="menu-item {{ request()->is('admin/products') || request()->is('admin/products/*') ? 'active' : '' }}">
+                            class="menu-item {{ request()->is('admin/products') || request()->is('admin/products/*') ? 'active open' : '' }}">
                             <a href="{{ route('admin.products.index') }}" class="menu-link">
                                 <div data-i18n="Analytics">{{ __('messages.product.title') }}</div>
                             </a>
@@ -121,14 +121,14 @@
 
                 <ul class="menu-sub">
                     <li
-                        class="menu-item {{ request()->is('admin/purchases') || request()->is('admin/purchases/*') ? 'active' : '' }}">
+                        class="menu-item {{ request()->is('admin/purchases') || request()->is('admin/purchases/*') ? 'active open' : '' }}">
                         <a href="{{ route('admin.purchases.index') }}" class="menu-link">
                             {{-- <i class='menu-icon tf-icons bx bxs-cart-alt'></i> --}}
                             <div data-i18n="Analytics">{{ __('messages.purchase.title') }}</div>
                         </a>
                     </li>
 
-                    <li class="menu-item {{ request()->is('admin/daily-purchase-report') ? 'active' : '' }}">
+                    <li class="menu-item {{ request()->is('admin/daily-purchase-report') ? 'active open' : '' }}">
                         <a href="{{ route('admin.daily-purchase-report.index') }}" class="menu-link">
                             {{-- <i class='menu-icon tf-icons bx bxs-report'></i> --}}
                             <div data-i18n="Analytics">Daily Purchase Report</div>
@@ -138,24 +138,28 @@
             </li>
         @endcan
 
-        <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Sale Management</span>
-        </li>
-
         @can('sale_access')
             <li
-                class="menu-item {{ request()->is('admin/purchases') || request()->is('admin/purchases/*') ? 'active' : '' }}">
-                <a href="{{ route('admin.purchases.index') }}" class="menu-link">
-                    <i class='menu-icon tf-icons bx bxs-cart-alt'></i>
-                    <div data-i18n="Analytics">{{ __('messages.purchase.title') }}</div>
+                class="menu-item {{ request()->is('admin/sales') || request()->is('admin/sales/*') || request()->is('admin/daily-sale-report') ? 'active open' : '' }}">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class='menu-icon tf-icons bx bx-dollar-circle'></i>
+                    <div data-i18n="Layouts">Sale Management</div>
                 </a>
-            </li>
 
-            <li class="menu-item {{ request()->is('admin/daily-purchase-report') ? 'active' : '' }}">
-                <a href="{{ route('admin.daily-purchase-report.index') }}" class="menu-link">
-                    <i class='menu-icon tf-icons bx bxs-report'></i>
-                    <div data-i18n="Analytics">Daily Purchase Report</div>
-                </a>
+                <ul class="menu-sub">
+                    <li
+                        class="menu-item {{ request()->is('admin/sales') || request()->is('admin/sales/*') ? 'active open' : '' }}">
+                        <a href="{{ route('admin.sales.index') }}" class="menu-link">
+                            <div data-i18n="Analytics">{{ __('messages.sale.title') }}</div>
+                        </a>
+                    </li>
+
+                    <li class="menu-item {{ request()->is('admin/daily-sale-report') ? 'active open' : '' }}">
+                        <a href="{{ route('admin.daily-sale-report.index') }}" class="menu-link">
+                            <div data-i18n="Analytics">Daily Sale Report</div>
+                        </a>
+                    </li>
+                </ul>
             </li>
         @endcan
     </ul>

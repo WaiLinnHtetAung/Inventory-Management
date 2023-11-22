@@ -1,47 +1,52 @@
 @extends('layouts.app')
-@section('title', 'Purchase Detail')
+@section('title', 'Sale Detail')
 
 @section('content')
     <div class="card-head-icon">
-        <i class='bx bxs-cart-alt' style="color: rgb(207, 122, 10);"></i>
-        <div>{{ __('messages.purchase.title') }} Detail</div>
+        <i class='bx bx-dollar-circle' style="color: green;"></i>
+        <div>{{ __('messages.sale.title') }} Detail</div>
     </div>
 
     <div class="card mt-3">
         <div class="d-flex justify-content-between m-3 mb-5">
-            <span>{{ __('messages.purchase.title') }} Detail</span>
+            <span>{{ __('messages.sale.title') }} Detail</span>
             <div>
                 <i class='bx bxs-printer fs-1 me-3 text-success cursor-pointer' onclick="printFunction();"></i>
-                <a href="{{ route('admin.pdf.download', ['pdf' => $purchase->id, 'type' => 'purchase']) }}"><i
+                <a href="{{ route('admin.pdf.download', ['pdf' => $sale->id, 'type' => 'sale']) }}"><i
                         class='bx bxs-download fs-1 me-5 text-danger cursor-pointer'></i></a>
             </div>
         </div>
         <div class="card-body" id="print_div">
             <table style="width: 100%" class="mb-5 upper-table">
                 <tr>
-                    <td class="purchase-invoice">
-                        <h2 class="fw-bold mb-4">Purchase Invoice</h2>
+                    <td style="width: 70%;">
+                        <h2 class="fw-bold mb-4">Sale Invoice</h2>
                         <div class="row mb-2">
-                            <div class="col-6 col-md-2 invoice-data">{{ __('messages.purchase.fields.invoice_no') }}</div>
-                            <div class="col-6">: {{ $purchase->invoice_no }}</div>
+                            <div class="col-4 col-md-3">{{ __('messages.sale.fields.invoice_no') }}</div>
+                            <div class="col-6">: {{ $sale->invoice_no }}</div>
                         </div>
                         <div class="row mb-2">
-                            <div class="col-6 col-md-2">{{ __('messages.purchase.fields.date') }}</div>
-                            <div class="col-6">: {{ \Carbon\Carbon::parse($purchase->date)->format('d-m-Y') }}</div>
+                            <div class="col-4 col-md-3">{{ __('messages.sale.fields.date') }}</div>
+                            <div class="col-6">: {{ \Carbon\Carbon::parse($sale->date)->format('d-m-Y') }}</div>
                         </div>
                         <div class="row mb-2">
-                            <div class="col-6 col-md-2">{{ __('messages.purchase.fields.supplier') }}</div>
-                            <div class="col-6 fw-bold fs-5">: {{ $purchase->supplier->name }}</div>
+                            <div class="col-4 col-md-3">{{ __('messages.sale.fields.customer') }}</div>
+                            <div class="col-6 fs-5">: {{ $sale->customer->name }}</div>
                         </div>
-                        <div class="row mb-3">
-                            <div class="col-6 col-md-2">{{ __('messages.purchase.fields.supplier_email') }}</div>
-                            <div class="col-6">: {{ $purchase->supplier->email }}</div>
+                        <div class="row mb-2">
+                            <div class="col-4 col-md-3">{{ __('messages.sale.fields.customer_email') }}</div>
+                            <div class="col-6">: {{ $sale->customer->email }}</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-4 col-md-3">{{ __('messages.sale.fields.customer_address') }}</div>
+                            <div class="col-6">: {{ $sale->customer->address }}</div>
                         </div>
                     </td>
-                    <td class="text-end">
+                    <td class="text-end" style="width:28%;">
                         <div class="d-inline-block text-center">
                             <img src="{{ asset('logo.png') }}" alt="company logo" width="150">
-                            <h2 class="fw-bold">{{ __('messages.panel_name') }}</h2>
+                            <h3 class="fw-bold">{{ __('messages.panel_name') }}</h3>
+                            <p>No.23B, Thamardi 2dn St, Thingangyun, Yangon</p>
                         </div>
                     </td>
                 </tr>
@@ -50,15 +55,15 @@
                 <thead>
                     <tr class="bg-primary">
                         <th class="text-white">No</th>
-                        <th class="text-white">{{ __('messages.purchase.fields.product') }}</th>
-                        <th class="text-white">{{ __('messages.purchase.fields.qty') }}</th>
-                        <th class="text-white">{{ __('messages.purchase.fields.currency') }}</th>
-                        <th class="text-white">{{ __('messages.purchase.fields.price') }}</th>
-                        <th class="text-white">{{ __('messages.purchase.fields.total') }}</th>
+                        <th class="text-white">{{ __('messages.sale.fields.product') }}</th>
+                        <th class="text-white">{{ __('messages.sale.fields.qty') }}</th>
+                        <th class="text-white">{{ __('messages.sale.fields.currency') }}</th>
+                        <th class="text-white">{{ __('messages.sale.fields.price') }}</th>
+                        <th class="text-white">{{ __('messages.sale.fields.total') }}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($purchase->products as $key => $product)
+                    @foreach ($sale->products as $key => $product)
                         <tr>
                             <td>{{ ++$key }}</td>
                             <td>{{ $product->name }}</td>
@@ -69,8 +74,8 @@
                         </tr>
                     @endforeach
                     <tr style="background: rgb(245, 240, 240);">
-                        <td colspan="5" class="text-center">{{ __('messages.purchase.fields.grand-total') }}</td>
-                        <td>{{ $purchase->grand_total }}</td>
+                        <td colspan="5" class="text-center">{{ __('messages.sale.fields.grand-total') }}</td>
+                        <td>{{ $sale->grand_total }}</td>
                     </tr>
                 </tbody>
             </table>

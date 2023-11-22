@@ -56,4 +56,21 @@ return [
             'grand-total' => 'Grand Total',
         ],
     ],
+
+    'sale' => [
+        'title' => 'Sale',
+        'fields' => [
+            'customer' => 'Customer Name',
+            'customer_email' => 'Customer Email',
+            'customer_address' => 'Customer Address',
+            'product' => 'Product Name',
+            'date' => 'Date',
+            'invoice_no' => 'Invoice No',
+            'qty' => 'Qty',
+            'currency' => 'Currency',
+            'price' => 'Price',
+            'total' => 'Total',
+            'grand-total' => 'Grand Total',
+        ],
+    ],
 ];

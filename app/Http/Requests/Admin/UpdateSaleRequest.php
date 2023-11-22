@@ -11,7 +11,7 @@ class UpdateSaleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,15 @@ class UpdateSaleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'customer_id' => 'required',
+            'date' => 'required',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'customer_id.required' => 'Customer field is required !',
         ];
     }
 }

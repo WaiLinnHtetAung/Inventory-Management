@@ -69,6 +69,37 @@ class PurchaseController extends Controller
     }
 
     /**
+     * recent data
+     */
+    public function recentData()
+    {
+        $data = Purchase::with('products', 'supplier')->latest()->take(10);
+
+        return Datatables::of($data)
+            ->editColumn('plus-icon', function ($each) {
+                return null;
+            })
+            ->editColumn('supplier_id', function ($each) {
+                return $each->supplier->name;
+            })
+            ->editColumn('date', function ($each) {
+                return Carbon::parse($each->date)->format('d-m-Y');
+            })
+            ->addColumn('action', function ($each) {
+                $show_icon = '';
+
+                if (auth()->user()->can('purchase_show')) {
+                    $show_icon = '<a href="' . route('admin.purchases.show', $each->id) . '" class="text-warning me-3"><i class="bx bxs-show fs-3"></i></a>';
+                }
+
+                return '<div class="action-icon text-center">' . $show_icon . '</div>';
+            })
+            ->rawColumns(['role', 'action'])
+            ->make(true);
+
+    }
+
+    /**
      * Show the form for creating a new resource.
      */
     public function create()
@@ -111,7 +142,7 @@ class PurchaseController extends Controller
             }
 
             DB::commit();
-            return redirect()->route('admin.purchases.index');
+            return redirect()->route('admin.purchases.index')->with('success', 'Successfully Created !');
         } catch (\Exception $error) {
             DB::rollback();
             return back()->withErrors(['fail' => 'Something wrong ' . $error->getMessage()])->withInput();
