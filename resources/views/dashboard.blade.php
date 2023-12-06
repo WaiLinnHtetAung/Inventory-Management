@@ -35,7 +35,7 @@
         <div class="row">
             <div class="col-md-4 col-lg-3 mb-3">
                 <a href="{{ route('admin.users.index') }}">
-                    <div class="card cursor-pointer">
+                    <div class="card cursor-pointer shadow">
                         <div class="card-body p-0 rounded" style="background: rgba(91, 182, 91, 0.863);">
                             <div class="d-flex justify-content-between align-items-center px-3 py-2">
                                 <div class="dash-info">
@@ -58,7 +58,7 @@
             </div>
             <div class="col-md-4 col-lg-3 mb-3">
                 <a href="{{ route('admin.categories.index') }}">
-                    <div class="card cursor-pointer">
+                    <div class="card cursor-pointer shadow">
                         <div class="card-body p-0 rounded" style="background: rgba(179, 142, 42, 0.863);">
                             <div class="d-flex justify-content-between align-items-center px-3 py-2">
                                 <div class="dash-info">
@@ -81,7 +81,7 @@
             </div>
             <div class="col-md-4 col-lg-3 mb-3">
                 <a href="{{ route('admin.products.index') }}">
-                    <div class="card cursor-pointer">
+                    <div class="card cursor-pointer shadow">
                         <div class="card-body p-0 rounded" style="background: rgba(74, 116, 196, 0.863);">
                             <div class="d-flex justify-content-between align-items-center px-3 py-2">
                                 <div class="dash-info">
@@ -104,7 +104,7 @@
             </div>
             <div class="col-md-4 col-lg-3 mb-3">
                 <a href="{{ route('admin.customers.index') }}">
-                    <div class="card cursor-pointer">
+                    <div class="card cursor-pointer shadow">
                         <div class="card-body p-0 rounded" style="background: rgba(214, 95, 58, 0.863);">
                             <div class="d-flex justify-content-between align-items-center px-3 py-2">
                                 <div class="dash-info">
@@ -127,7 +127,7 @@
             </div>
             <div class="col-md-4 col-lg-3 mb-3">
                 <a href="{{ route('admin.suppliers.index') }}">
-                    <div class="card cursor-pointer">
+                    <div class="card cursor-pointer shadow">
                         <div class="card-body p-0 rounded" style="background: rgba(216, 61, 208, 0.863);">
                             <div class="d-flex justify-content-between align-items-center px-3 py-2">
                                 <div class="dash-info">
@@ -150,7 +150,7 @@
             </div>
             <div class="col-md-4 col-lg-3 mb-3">
                 <a href="{{ route('admin.purchases.index') }}">
-                    <div class="card cursor-pointer">
+                    <div class="card cursor-pointer shadow">
                         <div class="card-body p-0 rounded" style="background: rgba(207, 45, 72, 0.863);">
                             <div class="d-flex justify-content-between align-items-center px-3 py-2">
                                 <div class="dash-info">
@@ -173,7 +173,7 @@
             </div>
             <div class="col-md-4 col-lg-3 mb-3">
                 <a href="{{ route('admin.sales.index') }}">
-                    <div class="card cursor-pointer">
+                    <div class="card cursor-pointer shadow">
                         <div class="card-body p-0 rounded" style="background: rgba(45, 161, 207, 0.863);">
                             <div class="d-flex justify-content-between align-items-center px-3 py-2">
                                 <div class="dash-info">
