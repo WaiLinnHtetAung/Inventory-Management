@@ -15,7 +15,6 @@
                 <div class="col-4 col-md-3">
                     <div class="form-group mb-4">
                         <label for="">{{ __('messages.sale.fields.invoice_no') }}</label>
-
                         <input type="text" name="invoice_no" class="form-control" value="{{ $invoice_no }}" readonly>
                     </div>
                 </div>
@@ -68,7 +67,7 @@
                                             <div class="row">
                                                 <div class="col-12 col-lg-6">
                                                     <div class="form-group">
-                                                        <label for="">phone</label>
+                                                        <label for="">Phone</label>
                                                         <input type="text" name="phone" class="form-control phone">
                                                     </div>
                                                 </div>

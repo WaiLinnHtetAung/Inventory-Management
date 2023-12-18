@@ -67,7 +67,7 @@
                                             <div class="row">
                                                 <div class="col-12 col-lg-6">
                                                     <div class="form-group">
-                                                        <label for="">phone</label>
+                                                        <label for="">Phone</label>
                                                         <input type="text" name="phone" class="form-control phone">
                                                     </div>
                                                 </div>
