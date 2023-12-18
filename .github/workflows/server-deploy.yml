@@ -1,4 +1,5 @@
-name: Project CI/CD
+name: Deploy Inventory Management System
+
 on:
 	push:
 		branches:
