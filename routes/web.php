@@ -25,7 +25,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
  */
-Route::get('/', function () {return redirect()->route('admin.home');});
+Route::get('/', function () {
+    return redirect()->route('admin.home');
+});
 
 Route::group(['middleware' => ['auth', 'prevent-back-history'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/', [ProfileController::class, 'dashboard'])->name('home');
@@ -61,6 +63,7 @@ Route::group(['middleware' => ['auth', 'prevent-back-history'], 'prefix' => 'adm
     //purchase
     Route::get('/purchase-datatable', [PurchaseController::class, 'dataTable']);
     Route::get('/recent-purchase-datatable', [PurchaseController::class, 'recentData']);
+    Route::post('/supplier-from-purchase', [PurchaseController::class, 'addSupplier'])->name('supplier-from-purchase');
     Route::resource('purchases', PurchaseController::class);
 
     //Daily Purchase Report
@@ -72,6 +75,7 @@ Route::group(['middleware' => ['auth', 'prevent-back-history'], 'prefix' => 'adm
     Route::get('/recent-sale-datatable', [SaleController::class, 'recentData']);
     Route::post('/product-stock', [SaleController::class, 'getProductStock'])->name('product.stock');
     Route::post('/stock-compare', [SaleController::class, 'compareStock'])->name('compare.stock');
+    Route::post('/customer-from-sale', [SaleController::class, 'addCustomer'])->name('customer-from-sale');
     Route::resource('sales', SaleController::class);
 
     //Daily Sale Report

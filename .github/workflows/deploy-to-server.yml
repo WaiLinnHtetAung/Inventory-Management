@@ -1,0 +1,40 @@
+name: Project CI/CD
+
+on:
+	push:
+		branches:
+			- main
+
+jobs:
+	build:
+   runs-on: ubuntu-latest
+
+   steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+	deploy:
+	    needs: build
+	    runs-on: ubuntu-latest
+
+	    steps:
+	      - name: Checkout repository
+	        uses: actions/checkout@v2
+
+	      - name: Set up SSH
+	        uses: webfactory/ssh-agent@v0.5.0
+	        with:
+	          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+	      - name: Add SSH Host Key
+	        run: echo "${{ secrets.KNOWN_HOSTS }}" >> $HOME/.ssh/known_hosts
+
+	      - name: Deploy to Server
+	        run: |
+	          ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'cd /var/www/admin_panel && git pull && composer install && php artisan migrate --force'

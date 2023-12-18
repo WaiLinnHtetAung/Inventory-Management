@@ -22,14 +22,75 @@
                 <div class="col-8 col-md-6">
                     <div class="form-group mb-4">
                         <label for="">{{ __('messages.purchase.fields.supplier') }}</label>
-                        <select name="supplier_id" id="" class="form-control select2"
-                            data-placeholder="--- Please Select ---">
-                            <option value=""></option>
-                            @foreach ($suppliers as $key => $value)
-                                <option value="{{ $key }}" {{ old('supplier_id') == $key ? 'selected' : '' }}>
-                                    {{ $value }}</option>
-                            @endforeach
-                        </select>
+                        <div class="input-group">
+                            <select name="supplier_id" id="" class="form-control select2 supplier-select"
+                                data-placeholder="--- Please Select ---">
+                                <option value=""></option>
+                                @foreach ($suppliers as $key => $value)
+                                    <option value="{{ $key }}" {{ old('supplier_id') == $key ? 'selected' : '' }}>
+                                        {{ $value }}</option>
+                                @endforeach
+                            </select>
+                            <button class="btn btn-danger rounded-end" type="button" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">
+                                <i class='bx bx-plus fs-5'></i>
+                            </button>
+
+                            {{-- New Supplier Modal  --}}
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Add New Supplier</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <hr>
+                                        <div class="modal-body">
+                                            <div class="row mb-3">
+                                                <div class="col-12 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="">Name <span
+                                                                class="text-danger">*</span></label>
+                                                        <input type="text" name="name" class="form-control name"
+                                                            required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="">Email</label>
+                                                        <input type="email" name="email" class="form-control email">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="">phone</label>
+                                                        <input type="text" name="phone" class="form-control phone">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="">Address <span
+                                                                class="text-danger">*</span></label>
+                                                        <textarea name="address" id="" cols="30" rows=5" class="form-control address" required></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cancel</button>
+                                            <button type="button" class="btn btn-primary add-supplier">Save
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -206,6 +267,40 @@
                     total += parseInt(amount);
                 }
                 $('.grand-total').val(total);
+            })
+
+            //add new supplier
+            $(document).on('click', '.add-supplier', function() {
+                let name = $('.name').val();
+                let email = $('.email').val();
+                let phone = $('.phone').val();
+                let address = $('.address').val();
+
+                if (!name || !address) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Please fill required fields !",
+                    });
+                } else {
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ route('admin.supplier-from-purchase') }}",
+                        data: {
+                            name,
+                            email,
+                            phone,
+                            address,
+                            _token: "{{ csrf_token() }}"
+                        },
+                        success: function(res) {
+                            let option = `<option value="${res.id}">${res.name}</option>`;
+
+                            $('.supplier-select').append(option);
+                            $('.modal').modal('hide');
+                        }
+                    })
+                }
             })
         })
     </script>

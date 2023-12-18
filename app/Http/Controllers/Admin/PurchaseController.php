@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StorePurchaseRequest;
-use App\Http\Requests\Admin\UpdatePurchaseRequest;
+use DataTables;
+use Carbon\Carbon;
 use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\Supplier;
-use Carbon\Carbon;
-use DataTables;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StorePurchaseRequest;
+use App\Http\Requests\Admin\UpdatePurchaseRequest;
 
 class PurchaseController extends Controller
 {
@@ -109,6 +110,16 @@ class PurchaseController extends Controller
         $invoice_no = "# " . sprintf("%07d", Purchase::latest()->first() ? Purchase::latest()->first()->id + 1 : 1);
 
         return view('admin.purchases.create', compact('suppliers', 'products', 'invoice_no'));
+    }
+
+    /**
+     * store new supplier
+     */
+    public function addSupplier(Request $request)
+    {
+        $supplier = Supplier::create($request->all());
+
+        return $supplier;
     }
 
     /**

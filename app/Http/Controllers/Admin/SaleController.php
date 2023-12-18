@@ -113,6 +113,16 @@ class SaleController extends Controller
     }
 
     /**
+     * store new customer
+     */
+    public function addCustomer(Request $request)
+    {
+        $customer = Customer::create($request->all());
+
+        return $customer;
+    }
+
+    /**
      * get product stock and price
      */
     public function getProductStock(Request $request)
