@@ -31,4 +31,4 @@ jobs:
 
       - name: Deploy to Server
         run: |
-          ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'cd /var/www/admin_panel && git pull && composer install && php artisan migrate --force'
+          ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'cd /var/www/inventory && git pull && composer install && php artisan migrate --force'
